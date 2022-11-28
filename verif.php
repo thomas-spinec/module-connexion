@@ -12,14 +12,23 @@
 
         if($login !== "" && $password !== ""){
             $requete = "SELECT count(*) FROM utilisateurs where 
-                    login = '".$login."' and password = '".$password."' ";
+                    login = '".$login."'";// and password = '".$password."' ";
             $exec_requete = $connect -> query($requete);
             $reponse      = mysqli_fetch_array($exec_requete);
             $count = $reponse['count(*)'];
 
-            if($count!=0){ // nom d'utilisateur et mot de passe correctes
-                $_SESSION['login'] = $login;
-                header('Location: index.php');
+            if($count!=0){ // nom d'utilisateur correct
+                $requete = "SELECT password FROM utilisateurs where login = '".$login."'";
+                $exec_requete = $connect -> query($requete);
+                $reponse      = mysqli_fetch_array($exec_requete);
+                $password_hash = $reponse['password'];
+                if (password_verify($password, $password_hash)) { //mot de passe correct
+                    $_SESSION['login'] = $login;
+                    header('Location: index.php');
+                }
+                else{
+                    header('Location: connexion.php?erreur=1'); // utilisateur ou mot de passe incorrect
+                }
             }
             else{
                 header('Location: connexion.php?erreur=1'); // utilisateur ou mot de passe incorrect
