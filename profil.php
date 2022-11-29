@@ -29,6 +29,7 @@
 
         ?>
 
+        <!-- modification des informations -->
         <?php
             // affichage en cas d'erreur
             if(isset($_GET['erreur'])){
@@ -40,30 +41,35 @@
                 }
             }
         ?>
-        <form action="" method="post">
+        <form action="profil.php" method="post">
             <label for="login">login</label>
-            <input type="text" name="login" id="login" value="<?=$login?>">
+            <input type="text" name="login" id="login" value="<?=$login?>" require>
             <label for ="prenom">Prénom</label>
-            <input type="text" name="prenom" id="prenom" value="<?=$prenom?>">
+            <input type="text" name="prenom" id="prenom" value="<?=$prenom?>" require>
             <label for="nom">Nom</label>
-            <input type="text" name="nom" id="nom" value="<?=$nom?>">
+            <input type="text" name="nom" id="nom" value="<?=$nom?>" require>
             <label for="password">Mot de passe</label>
-            <input type="password" name="password" id="password" placeholder="Entrez votre mot de passe">
+            <input type="password" name="password" id="password" placeholder="Entrez votre mot de passe" require>
             <input type="submit" value="Modifier">
         </form>
 
         <?php
-            if(isset($_POST['Modifier'])){
-                if (isset($_POST['password']) && $_POST['password'] !== ''){
-                    if (password_verify($password, $_POST['password'])) { //mot de passe correct
-                        $login = $_POST['login'];
-                        $prenom = $_POST['prenom'];
-                        $nom = $_POST['nom'];
+            if(isset($_POST['login']) && isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['password'])){
+                $prenom = $_POST['prenom'];
+                $nom = $_POST['nom'];
+                $password = $_POST['password'];
+                if ($password != ""){
+                    $requete = "SELECT password FROM utilisateurs where login = '".$login."'";
+                    $exec_requete = $connect -> query($requete);
+                    $reponse = mysqli_fetch_array($exec_requete);
+                    $password_hash = $reponse['password'];
+                    if (password_verify($password, $password_hash)) { //mot de passe correct
                         // stockage des nouvelles infos dans la BDD
-                        // $password = password_hash($password, PASSWORD_BCRYPT);
-                        $requete = "UPDATE utilisateurs SET login = '".$login."', prenom = '".$prenom."', nom = '".$nom."'";
+                        $password = password_hash($password, PASSWORD_BCRYPT);
+                        $requete = "UPDATE utilisateurs SET login = '".$_POST['login']."', prenom = '".$prenom."', nom = '".$nom."' where login = '".$login."'";
                         $exec_requete = $connect -> query($requete);
                         // stockage des nouvelles infos dans les variables de session
+                        $login = $_POST['login'];
                         $_SESSION['login'] = $login;
                         $_SESSION['prenom'] = $prenom;
                         $_SESSION['nom'] = $nom;
@@ -82,6 +88,7 @@
         ?>
         <br>
         <br>
+        <!-- modification du mot de passe -->
         <?php
             //affichage en cas d'erreur
             if(isset($_GET['erreur'])){
@@ -98,20 +105,20 @@
 
         ?>
         <br>
-        <form action="" method="post">
+        <form action="profil.php" method="post">
             <label for="password1">Ancien mot de passe</label>
-            <input type="password" name="password1" id="password" placeholder="Entrez votre ancien mot de passe">
+            <input type="password" name="password1" id="password" placeholder="Entrez votre ancien mot de passe" require>
             <label for="newpassword">Nouveau mot de passe</label>
-            <input type="password" name="newpassword" id="newpassword" placeholder="Entrez votre nouveau mot de passe">
+            <input type="password" name="newpassword" id="newpassword" placeholder="Entrez votre nouveau mot de passe" require>
             <label for="newpassword2">Confirmez votre nouveau mot de passe</label>
-            <input type="password" name="newpassword2" id="newpassword2" placeholder="Confirmez votre nouveau mot de passe">
+            <input type="password" name="newpassword2" id="newpassword2" placeholder="Confirmez votre nouveau mot de passe" require>
             <input type="submit" value="Changer le mot de passe">
         </form>
 
         <?php
-            if(isset($_POST['Changer le mot de passe'])){
-                if (isset($_POST['password1'])){
-                    if (password_verify($password, $_POST['password1'])) { // ancien mot de passe correct
+            if(isset($_POST['password1']) && isset($_POST['newpassword']) && isset($_POST['newpassword2'])){
+                if ($_POST['password1'] != ""){
+                    if (password_verify($_POST['password1'], $password)) { // ancien mot de passe correct
                         if (isset($_POST['newpassword']) && $_POST['newpassword'] !== '' && isset($_POST['newpassword2']) && $_POST['newpassword2'] !== ''){
                             if ($_POST['newpassword'] == $_POST['newpassword2']){ // nouveau mot de passe correct
                                 $password = password_hash($_POST['newpassword'], PASSWORD_BCRYPT);
@@ -125,18 +132,22 @@
                                 header('Location: profil.php');
                             }
                             else{
+                                // $_SESSION['erreur'] = 3; // les deux mots de passe ne correspondent pas
                                 header('Location: profil.php?erreur=3'); // deux mots de passe différents
                             }
                         }
                         else{
+                            //$_SESSION['erreur'] = 4; // case nouveau mot de passe vide
                             header('Location: profil.php?erreur=4'); // nouveau mot de passe vide
                         }
                     }
                     else{
+                        //$_SESSION['erreur'] = 5; // ancien mot de passe incorrect
                         header('Location: profil.php?erreur=5'); // ancien mot de passe incorrect
                     }
                 }
                 else{
+                    //$_SESSION['erreur'] = 5; // ancien mot de passe vide
                     header('Location: profil.php?erreur=5'); // ancien mot de passe vide
                 }
             }

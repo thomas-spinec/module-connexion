@@ -46,7 +46,7 @@
         </form>
 
         <?php
-            if(isset($_POST['login']) && isset($_POST['password']) && isset($_POST['prenom'])){
+            if(isset($_POST['login']) && isset($_POST['password']) && isset($_POST['prenom']) && isset($_POST['nom'])){
                 $login = mysqli_real_escape_string($connect,htmlspecialchars($_POST['login']));
                 $password = mysqli_real_escape_string($connect,htmlspecialchars($_POST['password']));
                 $password2 = mysqli_real_escape_string($connect,htmlspecialchars($_POST['password2']));
@@ -61,7 +61,7 @@
                         $count = $reponse['count(*)'];
 
                         if($count==0){
-                            $password = password_hash($password, PASSWORD_BCRYPT);
+                            $password = password_hash($password, PASSWORD_DEFAULT);
                             $requete = "INSERT INTO utilisateurs (login, prenom, nom, password) VALUES ('".$login."', '".$prenom."', '".$nom."', '".($password)."')";
                             $exec_requete = $connect -> query($requete);
                             header('Location: connexion.php');
