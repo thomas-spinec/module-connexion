@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil</title>
-</head>
-<body>
-    
     <!-- header des pages -->
     <?php
         include 'header.php';
@@ -65,7 +55,7 @@
                     $password_hash = $reponse['password'];
                     if (password_verify($password, $password_hash)) { //mot de passe correct
                         // stockage des nouvelles infos dans la BDD
-                        $password = password_hash($password, PASSWORD_BCRYPT);
+                        $password = password_hash($password, PASSWORD_DEFAULT);
                         $requete = "UPDATE utilisateurs SET login = '".$_POST['login']."', prenom = '".$prenom."', nom = '".$nom."' where login = '".$login."'";
                         $exec_requete = $connect -> query($requete);
                         // stockage des nouvelles infos dans les variables de session

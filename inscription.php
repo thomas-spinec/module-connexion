@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription</title>
-</head>
-<body>
     <!-- header des pages -->
     <?php
         include 'header.php';
@@ -62,7 +53,7 @@
 
                         if($count==0){
                             $password = password_hash($password, PASSWORD_DEFAULT);
-                            $requete = "INSERT INTO utilisateurs (login, prenom, nom, password) VALUES ('".$login."', '".$prenom."', '".$nom."', '".($password)."')";
+                            $requete = "INSERT INTO utilisateurs (login, prenom, nom, password) VALUES ('".$login."', '".$prenom."', '".$nom."', '".$password."')";
                             $exec_requete = $connect -> query($requete);
                             header('Location: connexion.php');
                         }
