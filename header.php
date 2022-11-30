@@ -38,9 +38,9 @@
                         if ($user == 'admin') {
                             echo "<nav>
                                 <ul>
-                                    <li><a href='index.php'>Accueil</a></li>
-                                    <li><a href='profil.php'>Profil</a></li>
-                                    <li><a href='admin.php'>Info Utilisateurs</a></li>
+                                    <li><a class='a_head'href='index.php'>Accueil</a></li>
+                                    <li><a class='a_head' href='profil.php'>Profil</a></li>
+                                    <li><a class='a_head' href='admin.php'>Info Utilisateurs</a></li>
                                 </ul>
                             </nav>";
                         }
@@ -48,14 +48,14 @@
                             echo "<nav>
                                 <ul>
                                     <li><a class='a_head' href='index.php'>Accueil</a></li>
-                                    <li><a href='profil.php'>Profil</a></li>
+                                    <li><a class='a_head' href='profil.php'>Profil</a></li>
                                 </ul>
                             </nav>";
                         }
                     }
                     else{
                         echo "<div>
-                            <a href='connexion.php=true'><button>Connexion</button></a>
+                            <a href='connexion.php'><button>Connexion</button></a>
                             <a href='inscription.php'><button>Inscription</button></a>
                             </div>";
                         echo "<a class='a_head' href='index.php'>Accueil</a>";

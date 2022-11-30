@@ -86,7 +86,7 @@ header button:hover {
   background-color: #d5c7a1;
 }
 
-header a {
+.a_head {
   color: #000;
   transition: 0.5s;
   padding: 5px 10px;
@@ -94,7 +94,7 @@ header a {
   font-size: 20px;
 }
 
-header a:hover {
+.a_head:hover {
   background-color: #d5c7a1;
   border-radius: 15px;
 }

@@ -23,7 +23,9 @@
         <?php
             // affichage en cas d'erreur
             if(isset($_GET['erreur'])){
-                if ($_GET['erreur'] == 1){
+                if($_GET['erreur'] == 0)
+                    echo "<p style='color:green'>Modifications réalisées</p>";
+                else if ($_GET['erreur'] == 1){
                     echo "<p style='color:red'>Mot de passe incorrect, modifications non réalisées</p>";
                 }
                 else if ($_GET['erreur'] == 2){
@@ -33,13 +35,13 @@
         ?>
         <form action="profil.php" method="post">
             <label for="login">login</label>
-            <input type="text" name="login" id="login" value="<?=$login?>" require>
+            <input type="text" name="login" id="login" value="<?=$login?>" required>
             <label for ="prenom">Prénom</label>
-            <input type="text" name="prenom" id="prenom" value="<?=$prenom?>" require>
+            <input type="text" name="prenom" id="prenom" value="<?=$prenom?>" required>
             <label for="nom">Nom</label>
-            <input type="text" name="nom" id="nom" value="<?=$nom?>" require>
+            <input type="text" name="nom" id="nom" value="<?=$nom?>" required>
             <label for="password">Mot de passe</label>
-            <input type="password" name="password" id="password" placeholder="Entrez votre mot de passe" require>
+            <input type="password" name="password" id="password" placeholder="Entrez votre mot de passe" required>
             <input type="submit" value="Modifier">
         </form>
 
@@ -63,9 +65,8 @@
                         $_SESSION['login'] = $login;
                         $_SESSION['prenom'] = $prenom;
                         $_SESSION['nom'] = $nom;
-                        echo "<p style='color:green'>Modifications réalisées</p>";
                         // redirection vers la page profil avec les nouvelles données
-                        header('Location: profil.php');
+                        header('Location: profil.php?erreur=0');
                     }
                     else{
                         header('Location: profil.php?erreur=1'); // mot de passe incorrect
@@ -97,11 +98,11 @@
         <br>
         <form action="profil.php" method="post">
             <label for="password1">Ancien mot de passe</label>
-            <input type="password" name="password1" id="password" placeholder="Entrez votre ancien mot de passe" require>
+            <input type="password" name="password1" id="password" placeholder="Entrez votre ancien mot de passe" required>
             <label for="newpassword">Nouveau mot de passe</label>
-            <input type="password" name="newpassword" id="newpassword" placeholder="Entrez votre nouveau mot de passe" require>
+            <input type="password" name="newpassword" id="newpassword" placeholder="Entrez votre nouveau mot de passe" required>
             <label for="newpassword2">Confirmez votre nouveau mot de passe</label>
-            <input type="password" name="newpassword2" id="newpassword2" placeholder="Confirmez votre nouveau mot de passe" require>
+            <input type="password" name="newpassword2" id="newpassword2" placeholder="Confirmez votre nouveau mot de passe" required>
             <input type="submit" value="Changer le mot de passe">
         </form>
 
@@ -117,9 +118,8 @@
                                 $exec_requete = $connect -> query($requete);
                                 // stockage du nouveau mot de passe dans les variables de session
                                 $_SESSION['password'] = $password;
+                                // message de réussite
                                 echo "<p style='color:green'>Mot de passe modifié</p>";
-                                // redirection vers la page profil avec le nouveau mot de passe
-                                header('Location: profil.php');
                             }
                             else{
                                 // $_SESSION['erreur'] = 3; // les deux mots de passe ne correspondent pas
