@@ -36,6 +36,7 @@
                             </div>";
                         
                         if ($user == 'admin') {
+                            $_SESSION['admin'] = "true";
                             echo "<nav>
                                 <ul>
                                     <li><a class='a_head'href='index.php'>Accueil</a></li>

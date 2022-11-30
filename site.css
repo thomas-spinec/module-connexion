@@ -124,7 +124,39 @@ footer {
   color: #fafafa;
   text-align: center;
   padding: 10px;
+  padding-bottom: 1%;
   font-size: 20px;
+}
+
+.flex_footer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.logo {
+  flex-basis: 20%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 20%;
+}
+
+.link {
+  position: relative;
+  transition: all 0.3s;
+}
+
+.link img {
+  max-width: 100%;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.link:hover {
+  opacity: 1;
+  transform: translateY(-10%);
+  box-shadow: 0 10px 20px #88dfff;
 }
 
 /* *****************
@@ -133,7 +165,7 @@ footer {
 
 main {
   margin-top: 135px;
-  min-height: 80vh;
+  min-height: 65vh;
   margin-bottom: 3%;
 }
 
