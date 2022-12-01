@@ -5,7 +5,11 @@
 
     <!-- contenu de la page -->
     <main>
-
+        <div class="container_morpion">
+            <?php
+                include 'morpion.php'
+            ?>
+        </div>
     </main>
 
     <!-- footer des pages -->

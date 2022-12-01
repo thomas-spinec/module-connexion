@@ -261,3 +261,36 @@ table {
   padding-bottom: 1%;
   padding-left: 0.5%;
 }
+
+/* *****************
+    Morpion
+****************** */
+
+#title_morpion {
+  text-align: center;
+}
+
+.container_morpion {
+  width: 40%;
+  margin: auto;
+  padding: auto;
+}
+
+#table_morpion {
+  border: solid;
+}
+
+#table_morpion td {
+  width: 100px;
+  height: 100px;
+  /* border: solid; */
+}
+
+#table_morpion img {
+  width: 100%;
+  height: auto;
+}
+
+.morpion {
+  font-size: 20px;
+}

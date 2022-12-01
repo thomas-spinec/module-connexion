@@ -1,3 +1,8 @@
+<!-- Partie PHP -->
+<?php
+    session_start();
+    include 'fonction_morpion.php'
+?>
 <!-- header des pages -->
 <!DOCTYPE html>
 <html lang="fr">
@@ -19,8 +24,6 @@
                 </div>
                 <?php
                     // test si l'utilisateur est connecté
-                
-                    session_start();
                     if (isset($_GET['deconnexion'])){
                         if($_GET['deconnexion']==true){
                             session_unset();
