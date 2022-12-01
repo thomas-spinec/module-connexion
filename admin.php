@@ -2,7 +2,7 @@
     <?php
         include 'header.php';
         include 'connect.php';
-        if (!isset($_SESSION['admin']) OR $_SESSION['admin'] === 'false'){
+        if (!isset($_SESSION['admin']) OR $_SESSION['admin'] === 'false' OR $user != 'admin'){
             header('Location: index.php');
         }
     ?>

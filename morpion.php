@@ -1,6 +1,4 @@
     <h2 id="title_morpion">morpion</h2>
-    <br>
-    <br>
     <?php  // JEU //
         if (isset($_POST['case1'])){
             $case1 = 'case1';
@@ -192,7 +190,6 @@
             echo "<p class='morpion'>Match nul!</p>";
         }
         else{
-            $_SESSION['tour']++;
             chgmt_joueur();
             echo "<p class='morpion'>Au tour du joueur ". $_SESSION['joueur']."</p>";
             echo "<p class='morpion'>tour :  ". $_SESSION['tour']."</p>";

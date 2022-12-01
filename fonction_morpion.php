@@ -13,10 +13,12 @@
         if ($_SESSION['tour'] % 2 != 0){
             $_SESSION[$case] = 'X';
             $_SESSION[$jeu] = "img/croix.png";
+            $_SESSION['tour']++;
         }
         else {
             $_SESSION[$case] = 'O';
             $_SESSION[$jeu] = "img/rond.png";
+            $_SESSION['tour']++;
         }
     }
 
@@ -89,7 +91,7 @@
             }
         }
         $_SESSION['joueur'] = 'X';
-        $_SESSION['tour'] = 0;
+        $_SESSION['tour'] = 1;
     }
 
 ?>
