@@ -31,6 +31,8 @@
                     $_SESSION['prenom'] = $reponse['prenom'];
                     $_SESSION['nom'] = $reponse['nom'];
                     $_SESSION['password'] = $reponse['password'];
+                    // variable de protection
+                    $_SESSION['loginOK'] = true;
                     header('Location: index.php');
                 }
                 else{

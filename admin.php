@@ -5,6 +5,9 @@
         if (!isset($_SESSION['admin']) OR $_SESSION['admin'] === 'false' OR $user != 'admin'){
             header('Location: index.php');
         }
+        if (!$_SESSION['loginOK']){
+            header('Location: connexion.php');
+        }
     ?>
 
     <!-- contenu de la page -->

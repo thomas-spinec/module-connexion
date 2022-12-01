@@ -2,6 +2,9 @@
     <?php
         include 'header.php';
         include 'connect.php';
+        if (!$_SESSION['loginOK']){
+            header('Location: connexion.php');
+        }
     ?>
 
     <!-- contenu de la page -->
