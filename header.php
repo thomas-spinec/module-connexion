@@ -27,6 +27,7 @@
                     if (isset($_GET['deconnexion'])){
                         if($_GET['deconnexion']==true){
                             session_unset();
+                            session_destroy();
                             header('Location: index.php');
                         }
                     }
