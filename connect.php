@@ -5,5 +5,5 @@ $connect = new mysqli('localhost', 'root', '', 'moduleconnexion');
 
 // Connexion à la base de données en ligne
 
-// $connect = new mysqli('localhost', 'Thomas', 'mdpdatabase', 'thomas-spinec_moduleconnexion')
+// $connect = new mysqli('localhost', 'Thomas', 'mdpmoduleco', 'thomas-spinec_moduleconnexion')
 ?>
